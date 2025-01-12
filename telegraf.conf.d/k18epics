@@ -1,0 +1,69 @@
+[global_tags]
+  environment = "production"
+
+[agent]
+  interval = "10s"
+  round_interval = true
+  metric_batch_size = 1000
+  metric_buffer_limit = 10000
+  collection_jitter = "0s"
+  flush_interval = "10s"
+  flush_jitter = "0s"
+  precision = "" # default
+  debug = false
+  quiet = false
+  # logformat = "text"
+  # logfile = ""
+  # logfile_rotation_interval = "0h"
+  # logfile_rotation_max_size = "0MB"
+  # logfile_rotation_max_archives = 5
+  # log_with_timezone = ""
+  # hostname = ""
+  # omit_hostname = false
+  # snmp_translator = "netsnmp"
+  # statefile = ""
+  # skip_processors_after_aggregators = false
+
+[[outputs.influxdb_v2]]
+  urls = ["http://localhost:8086"]
+  token = "4jZ5ZXaWgs4Xpg7WnK-PjYsQ4gYHjCO8kTcEnWorK14hHbyXjA0avfCq4kCxvp6XsDnHNqywmXXTF8dN8uvSkQ=="
+  organization = "k18"
+  bucket = "system"
+  timeout = "5s"
+  bucket_tag = "dest_bucket"
+
+[[inputs.cpu]]
+  percpu = true
+  totalcpu = true
+  collect_cpu_time = false
+  report_active = false
+  core_tags = false
+
+# [[inputs.net]]
+#   interfaces = ["enp5s0"]
+#   fielddrop = ["icmp_*" , "ip_*"]
+
+[[inputs.mem]]
+
+[[inputs.sensors]]
+
+# [[inputs.exec]]
+#   commands = ["python /home/sks/slow-monitor/telegraf.exec/caenhv-n1470.py"]
+#   timeout = "5s"
+#   data_format = "influx"
+#   [inputs.exec.tags]
+#     dest_bucket = "caenhv"
+
+# [[inputs.exec]]
+#   commands = ["python /home/sks/slow-monitor/telegraf.exec/logger.py 192.168.20.21"]
+#   timeout = "10s"
+#   data_format = "influx"
+#   [inputs.exec.tags]
+#     dest_bucket = "logger"
+
+# [[inputs.exec]]
+#   commands = ["python /home/sks/slow-monitor/telegraf.exec/kikusui.py"]
+#   timeout = "10s"
+#   data_format = "influx"
+#   [inputs.exec.tags]
+#     dest_bucket = "threshold"
