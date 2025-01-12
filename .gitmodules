@@ -1,0 +1,3 @@
+[submodule "slowdash"]
+	path = slowdash
+	url = https://github.com/slowproj/slowdash.git
