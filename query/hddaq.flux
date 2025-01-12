@@ -1,0 +1,6 @@
+from(bucket: "hddaq")
+  |> range(start: -1y)
+// |> filter(fn: (r) => r._field == "comment")
+  |> sort(columns: ["_time"], desc: true)
+//  |> keep(columns: ["_value"])
+  |> limit(n: 1)
