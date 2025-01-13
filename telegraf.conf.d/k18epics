@@ -47,19 +47,11 @@
 
 [[inputs.sensors]]
 
-# [[inputs.exec]]
-#   commands = ["python /home/sks/slow-monitor/telegraf.exec/caenhv-n1470.py"]
-#   timeout = "5s"
-#   data_format = "influx"
-#   [inputs.exec.tags]
-#     dest_bucket = "caenhv"
-
-# [[inputs.exec]]
-#   commands = ["python /home/sks/slow-monitor/telegraf.exec/logger.py 192.168.20.21"]
-#   timeout = "10s"
-#   data_format = "influx"
-#   [inputs.exec.tags]
-#     dest_bucket = "logger"
+[[inputs.exec]]
+  commands = ["python /home/sks/software/slow-monitor/telegraf.exec/ess.py"]
+  data_format = "influx"
+  [inputs.exec.tags]
+    dest_bucket = "ess"
 
 # [[inputs.exec]]
 #   commands = ["python /home/sks/slow-monitor/telegraf.exec/kikusui.py"]
