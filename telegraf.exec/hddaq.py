@@ -2,7 +2,7 @@
 
 import os
 
-data_dir = '/home/axis/daq/tmpdata'
+data_dir = '/home/axis/daq/data'
 misc_dir = os.path.join(data_dir, 'misc')
 runno_txt = os.path.join(misc_dir, 'runno.txt')
 starttime_txt = os.path.join(misc_dir, 'starttime.txt')
@@ -14,7 +14,7 @@ comment_txt = os.path.join(misc_dir, 'comment.txt')
 def read(path):
   with open(path, 'r') as f:
     lines = f.readlines()
-    return lines[-1] if lines else None
+    return lines[-1].strip() if lines else None
 
 #______________________________________________________________________________
 def read_comment(path=comment_txt):
@@ -27,8 +27,10 @@ def read_comment(path=comment_txt):
 
 #______________________________________________________________________________
 if __name__ == '__main__':
-  print(f'hddaq,data_dir="{data_dir}" runnumber={read(runno_txt)}i,'+
-        f'starttime="{read(starttime_txt)}",'+
-        f'maxevent={read(maxevent_txt)}i,'+
-        f'trig="{read(trig_txt)}",'+
-        f'comment="{read_comment()}"')
+  if os.path.exists(data_dir):
+    data_dir = os.path.abspath(data_dir)
+    print(f'hddaq,data_dir="{data_dir}" runnumber={read(runno_txt)}i,'+
+          f'starttime="{read(starttime_txt)}",'+
+          f'maxevent={read(maxevent_txt)}i,'+
+          f'trig="{read(trig_txt)}",'+
+          f'comment="{read_comment()}"')
