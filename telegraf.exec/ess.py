@@ -2,8 +2,7 @@ import epics
 import os
 from multiprocessing import Pool
 
-os.environ['EPICS_CA_AUTO_ADDR_LIST'] = 'no'
-os.environ['EPICS_CA_ADDR_LIST'] = '192.168.30.255 192.153.109.232'
+import myenv
 
 pv_tail_list = [
   'NEG_IMON',
@@ -25,6 +24,7 @@ def fetch_pv_value(pv_name):
     return pv_name, value, unit
   except Exception as e:
     return None, e
+
 #______________________________________________________________________________
 def read():
   lines = []

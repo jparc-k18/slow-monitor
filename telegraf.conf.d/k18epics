@@ -53,6 +53,12 @@
   [inputs.exec.tags]
     dest_bucket = "ess"
 
+[[inputs.exec]]
+  commands = ["python /home/sks/software/slow-monitor/telegraf.exec/acc.py"]
+  data_format = "influx"
+  [inputs.exec.tags]
+    dest_bucket = "acc"
+
 # [[inputs.exec]]
 #   commands = ["python /home/sks/slow-monitor/telegraf.exec/kikusui.py"]
 #   timeout = "10s"
