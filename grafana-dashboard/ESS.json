@@ -80,7 +80,7 @@
             "type": "influxdb",
             "uid": "de9sexibae9z4e"
           },
-          "query": "from(bucket: \"ess\")\n  |> range(start: -7d)\n  |> filter(fn: (r) => r._field == \"pos_vmon\")\n  |> filter(fn: (r) => r._measurement == \"ess1\")\n  |> sort(columns: [\"_time\"], desc: true)\n  |> keep(columns: [\"_time\", \"_measurement\", \"_field\", \"_value\"])\n//  |> limit(n: 1000)\n",
+          "query": "from(bucket: \"ess\")\n  |> range(start: -6h)\n  |> filter(fn: (r) => r._field == \"pos_vmon\")\n  |> filter(fn: (r) => r._measurement == \"ess1\")\n  |> aggregateWindow(every: 1m, fn: min)\n//  |> sort(columns: [\"_time\"], desc: true)\n  |> keep(columns: [\"_time\", \"_measurement\", \"_field\", \"_value\"])\n//  |> limit(n: 1000)\n",
           "refId": "A"
         }
       ],
@@ -147,7 +147,7 @@
             "type": "influxdb",
             "uid": "de9sexibae9z4e"
           },
-          "query": "from(bucket: \"ess\")\n  |> range(start: -7d)\n  |> filter(fn: (r) => r._field == \"neg_vmon\")\n  |> filter(fn: (r) => r._measurement == \"ess1\")\n//  |> sort(columns: [\"_time\"], desc: true)\n  |> keep(columns: [\"_time\", \"_measurement\", \"_field\", \"_value\"])\n//  |> limit(n: 1)\n",
+          "query": "from(bucket: \"ess\")\n  |> range(start: -6h)\n  |> filter(fn: (r) => r._field == \"neg_vmon\")\n  |> filter(fn: (r) => r._measurement == \"ess1\")\n  |> aggregateWindow(every: 1m, fn: min)\n//  |> sort(columns: [\"_time\"], desc: true)\n  |> keep(columns: [\"_time\", \"_measurement\", \"_field\", \"_value\"])\n//  |> limit(n: 1)\n",
           "refId": "A"
         }
       ],
@@ -222,7 +222,7 @@
             "type": "influxdb",
             "uid": "de9sexibae9z4e"
           },
-          "query": "from(bucket: \"ess\")\n  |> range(start: -7d)\n  |> filter(fn: (r) => r._field == \"pos_imon\")\n  |> filter(fn: (r) => r._measurement == \"ess1\")\n//  |> sort(columns: [\"_time\"], desc: true)\n  |> keep(columns: [\"_time\", \"_measurement\", \"_field\", \"_value\"])\n//  |> limit(n: 1)\n",
+          "query": "from(bucket: \"ess\")\n  |> range(start: -6h)\n  |> filter(fn: (r) => r._field == \"pos_imon\")\n  |> filter(fn: (r) => r._measurement == \"ess1\")\n  |> aggregateWindow(every: 1m, fn: max)\n//  |> sort(columns: [\"_time\"], desc: true)\n  |> keep(columns: [\"_time\", \"_measurement\", \"_field\", \"_value\"])\n//  |> limit(n: 1)\n",
           "refId": "A"
         }
       ],
@@ -297,7 +297,7 @@
             "type": "influxdb",
             "uid": "de9sexibae9z4e"
           },
-          "query": "from(bucket: \"ess\")\n  |> range(start: -7d)\n  |> filter(fn: (r) => r._field == \"neg_imon\")\n  |> filter(fn: (r) => r._measurement == \"ess1\")\n//  |> sort(columns: [\"_time\"], desc: true)\n  |> keep(columns: [\"_time\", \"_measurement\", \"_field\", \"_value\"])\n//  |> limit(n: 1)\n",
+          "query": "from(bucket: \"ess\")\n  |> range(start: -6h)\n  |> filter(fn: (r) => r._field == \"neg_imon\")\n  |> filter(fn: (r) => r._measurement == \"ess1\")\n  |> aggregateWindow(every: 1m, fn: max)\n//  |> sort(columns: [\"_time\"], desc: true)\n  |> keep(columns: [\"_time\", \"_measurement\", \"_field\", \"_value\"])\n//  |> limit(n: 1)\n",
           "refId": "A"
         }
       ],
@@ -363,11 +363,11 @@
             "type": "influxdb",
             "uid": "de9sexibae9z4e"
           },
-          "query": "from(bucket: \"ess\")\n  |> range(start: -7d)\n  |> filter(fn: (r) => r._field == \"ccg_pmon\")\n  |> filter(fn: (r) => r._measurement == \"ess1\")\n//  |> sort(columns: [\"_time\"], desc: true)\n  |> keep(columns: [\"_time\", \"_measurement\", \"_field\", \"_value\"])\n//  |> limit(n: 1)\n",
+          "query": "from(bucket: \"ess\")\n  |> range(start: -6h)\n  |> filter(fn: (r) => r._field == \"ccg_pmon\")\n  |> filter(fn: (r) => r._measurement == \"ess1\")\n  |> aggregateWindow(every: 5m, fn: mean)\n//  |> sort(columns: [\"_time\"], desc: true)\n  |> keep(columns: [\"_time\", \"_measurement\", \"_field\", \"_value\"])\n//  |> limit(n: 1)\n",
           "refId": "A"
         }
       ],
-      "title": "ESS1 NEG IMON",
+      "title": "ESS1 VACUUM",
       "transparent": true,
       "type": "stat"
     },
@@ -430,7 +430,7 @@
             "type": "influxdb",
             "uid": "de9sexibae9z4e"
           },
-          "query": "from(bucket: \"ess\")\n  |> range(start: -7d)\n  |> filter(fn: (r) => r._field == \"pos_vmon\")\n  |> filter(fn: (r) => r._measurement == \"ess2\")\n//  |> sort(columns: [\"_time\"], desc: true)\n  |> keep(columns: [\"_time\", \"_measurement\", \"_field\", \"_value\"])\n//  |> limit(n: 1)\n",
+          "query": "from(bucket: \"ess\")\n  |> range(start: -6h)\n  |> filter(fn: (r) => r._field == \"pos_vmon\")\n  |> filter(fn: (r) => r._measurement == \"ess2\")\n  |> aggregateWindow(every: 1m, fn: min)\n//  |> sort(columns: [\"_time\"], desc: true)\n  |> keep(columns: [\"_time\", \"_measurement\", \"_field\", \"_value\"])\n//  |> limit(n: 1)\n",
           "refId": "A"
         }
       ],
@@ -497,7 +497,7 @@
             "type": "influxdb",
             "uid": "de9sexibae9z4e"
           },
-          "query": "from(bucket: \"ess\")\n  |> range(start: -7d)\n  |> filter(fn: (r) => r._field == \"neg_vmon\")\n  |> filter(fn: (r) => r._measurement == \"ess2\")\n//  |> sort(columns: [\"_time\"], desc: true)\n  |> keep(columns: [\"_time\", \"_measurement\", \"_field\", \"_value\"])\n//  |> limit(n: 1)\n",
+          "query": "from(bucket: \"ess\")\n  |> range(start: -6h)\n  |> filter(fn: (r) => r._field == \"neg_vmon\")\n  |> filter(fn: (r) => r._measurement == \"ess2\")\n  |> aggregateWindow(every: 1m, fn: min)\n//  |> sort(columns: [\"_time\"], desc: true)\n  |> keep(columns: [\"_time\", \"_measurement\", \"_field\", \"_value\"])\n//  |> limit(n: 1)\n",
           "refId": "A"
         }
       ],
@@ -572,7 +572,7 @@
             "type": "influxdb",
             "uid": "de9sexibae9z4e"
           },
-          "query": "from(bucket: \"ess\")\n  |> range(start: -7d)\n  |> filter(fn: (r) => r._field == \"pos_imon\")\n  |> filter(fn: (r) => r._measurement == \"ess2\")\n//  |> sort(columns: [\"_time\"], desc: true)\n  |> keep(columns: [\"_time\", \"_measurement\", \"_field\", \"_value\"])\n//  |> limit(n: 1)\n",
+          "query": "from(bucket: \"ess\")\n  |> range(start: -6h)\n  |> filter(fn: (r) => r._field == \"pos_imon\")\n  |> filter(fn: (r) => r._measurement == \"ess2\")\n  |> aggregateWindow(every: 1m, fn: max)\n//  |> sort(columns: [\"_time\"], desc: true)\n  |> keep(columns: [\"_time\", \"_measurement\", \"_field\", \"_value\"])\n//  |> limit(n: 1)\n",
           "refId": "A"
         }
       ],
@@ -647,7 +647,7 @@
             "type": "influxdb",
             "uid": "de9sexibae9z4e"
           },
-          "query": "from(bucket: \"ess\")\n  |> range(start: -7d)\n  |> filter(fn: (r) => r._field == \"neg_imon\")\n  |> filter(fn: (r) => r._measurement == \"ess2\")\n//  |> sort(columns: [\"_time\"], desc: true)\n  |> keep(columns: [\"_time\", \"_measurement\", \"_field\", \"_value\"])\n//  |> limit(n: 1)\n",
+          "query": "from(bucket: \"ess\")\n  |> range(start: -6h)\n  |> filter(fn: (r) => r._field == \"neg_imon\")\n  |> filter(fn: (r) => r._measurement == \"ess2\")\n  |> aggregateWindow(every: 1m, fn: max)\n//  |> sort(columns: [\"_time\"], desc: true)\n  |> keep(columns: [\"_time\", \"_measurement\", \"_field\", \"_value\"])\n//  |> limit(n: 1)\n",
           "refId": "A"
         }
       ],
@@ -713,11 +713,11 @@
             "type": "influxdb",
             "uid": "de9sexibae9z4e"
           },
-          "query": "from(bucket: \"ess\")\n  |> range(start: -7d)\n  |> filter(fn: (r) => r._field == \"ccg_pmon\")\n  |> filter(fn: (r) => r._measurement == \"ess2\")\n//  |> sort(columns: [\"_time\"], desc: true)\n  |> keep(columns: [\"_time\", \"_measurement\", \"_field\", \"_value\"])\n//  |> limit(n: 1)\n",
+          "query": "from(bucket: \"ess\")\n  |> range(start: -6h)\n  |> filter(fn: (r) => r._field == \"ccg_pmon\")\n  |> filter(fn: (r) => r._measurement == \"ess2\")\n  |> aggregateWindow(every: 5m, fn: mean)\n//  |> sort(columns: [\"_time\"], desc: true)\n  |> keep(columns: [\"_time\", \"_measurement\", \"_field\", \"_value\"])\n//  |> limit(n: 1)\n",
           "refId": "A"
         }
       ],
-      "title": "ESS2 NEG IMON",
+      "title": "ESS2 VACUUM",
       "transparent": true,
       "type": "stat"
     },
@@ -806,7 +806,7 @@
             "type": "influxdb",
             "uid": "de9sexibae9z4e"
           },
-          "query": "from(bucket: \"ess\")\n  |> range(start: -7d)\n  |> filter(fn: (r) => r._field =~ /.vmon/)\n//  |> sort(columns: [\"_time\"], desc: true)\n  |> keep(columns: [\"_time\", \"_measurement\", \"_field\", \"_value\"])\n//  |> limit(n: 1)\n",
+          "query": "from(bucket: \"ess\")\n  |> range(start: -6h)\n  |> filter(fn: (r) => r._field =~ /.vmon/)\n//  |> sort(columns: [\"_time\"], desc: true)\n  |> keep(columns: [\"_time\", \"_measurement\", \"_field\", \"_value\"])\n // |> aggregateWindow()\n//  |> limit(n: 1)\n",
           "refId": "A"
         }
       ],
@@ -899,7 +899,7 @@
             "type": "influxdb",
             "uid": "de9sexibae9z4e"
           },
-          "query": "from(bucket: \"ess\")\n  |> range(start: -7d)\n  |> filter(fn: (r) => r._field =~ /.imon/)\n//  |> sort(columns: [\"_time\"], desc: true)\n  |> keep(columns: [\"_time\", \"_measurement\", \"_field\", \"_value\"])\n//  |> limit(n: 1)\n",
+          "query": "from(bucket: \"ess\")\n  |> range(start: -6h)\n  |> filter(fn: (r) => r._field =~ /.imon/)\n//  |> sort(columns: [\"_time\"], desc: true)\n  |> keep(columns: [\"_time\", \"_measurement\", \"_field\", \"_value\"])\n//  |> limit(n: 1)\n",
           "refId": "A"
         }
       ],
@@ -992,7 +992,7 @@
             "type": "influxdb",
             "uid": "de9sexibae9z4e"
           },
-          "query": "from(bucket: \"ess\")\n  |> range(start: -7d)\n  |> filter(fn: (r) => r._field =~ /.pmon/)\n//  |> sort(columns: [\"_time\"], desc: true)\n  |> keep(columns: [\"_time\", \"_measurement\", \"_field\", \"_value\"])\n//  |> limit(n: 1)\n",
+          "query": "from(bucket: \"ess\")\n  |> range(start: -6h)\n  |> filter(fn: (r) => r._field =~ /.pmon/)\n//  |> sort(columns: [\"_time\"], desc: true)\n  |> keep(columns: [\"_time\", \"_measurement\", \"_field\", \"_value\"])\n//  |> limit(n: 1)\n",
           "refId": "A"
         }
       ],
@@ -1052,7 +1052,7 @@
           ],
           "show": false
         },
-        "frameIndex": 0,
+        "frameIndex": 1,
         "showHeader": true
       },
       "pluginVersion": "11.4.0",
@@ -1072,6 +1072,7 @@
     }
   ],
   "preload": false,
+  "refresh": "auto",
   "schemaVersion": 40,
   "tags": [],
   "templating": {
@@ -1085,6 +1086,6 @@
   "timezone": "browser",
   "title": "ESS",
   "uid": "ae9w2ia5xw0lce",
-  "version": 69,
+  "version": 84,
   "weekStart": ""
 }
