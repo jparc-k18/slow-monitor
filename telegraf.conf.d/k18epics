@@ -59,9 +59,8 @@
   [inputs.exec.tags]
     dest_bucket = "acc"
 
-# [[inputs.exec]]
-#   commands = ["python /home/sks/slow-monitor/telegraf.exec/kikusui.py"]
-#   timeout = "10s"
-#   data_format = "influx"
-#   [inputs.exec.tags]
-#     dest_bucket = "threshold"
+[[inputs.exec]]
+  commands = ["python /home/sks/software/slow-monitor/telegraf.exec/magnet.py"]
+  data_format = "influx"
+  [inputs.exec.tags]
+    dest_bucket = "magnet"
