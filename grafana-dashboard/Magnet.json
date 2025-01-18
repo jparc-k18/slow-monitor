@@ -94,7 +94,7 @@
       "pluginVersion": "11.4.0",
       "targets": [
         {
-          "query": "import \"strings\"\n\nfrom(bucket: \"magnet\")\n  |> range(start: -1h)\n  |> filter(fn: (r) => r._measurement == \"current\")\n  |> filter(fn: (r) => int(v: r.order) <= 10)\n  |> map(fn: (r) => ({ r with magnet: strings.toUpper(v: r.magnet) }))\n  |> sort(columns: [\"_time\"], desc: true)\n  |> unique(column: \"_field\")\n  |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\n  |> group(columns: [])\n  |> sort(columns: [\"order\"])\n//  |> keep(columns: [\"_time\", \"magnet\", \"cmon\", \"cset\", \"pol\"])\n  |> keep(columns: [\"magnet\", \"cmon\", \"cset\", \"pol\"])\n",
+          "query": "import \"strings\"\n\nfrom(bucket: \"magnet\")\n  |> range(start: -1h)\n  |> filter(fn: (r) => r._measurement == \"hdps\")\n  |> filter(fn: (r) => int(v: r.order) <= 10)\n  |> map(fn: (r) => ({ r with magnet: strings.toUpper(v: r.magnet) }))\n  |> sort(columns: [\"_time\"], desc: true)\n  |> unique(column: \"_field\")\n  |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\n  |> group(columns: [])\n  |> sort(columns: [\"order\"])\n//  |> keep(columns: [\"_time\", \"magnet\", \"cmon\", \"cset\", \"pol\"])\n  |> keep(columns: [\"magnet\", \"cmon\", \"cset\", \"pol\"])\n",
           "refId": "A"
         }
       ],
@@ -174,7 +174,7 @@
       "pluginVersion": "11.4.0",
       "targets": [
         {
-          "query": "import \"strings\"\n\nfrom(bucket: \"magnet\")\n  |> range(start: -1h)\n  |> filter(fn: (r) => r._measurement == \"current\")\n  |> filter(fn: (r) => int(v: r.order) > 10 and int(v: r.order) <= 21)\n  |> map(fn: (r) => ({ r with magnet: strings.toUpper(v: r.magnet) }))\n  |> sort(columns: [\"_time\"], desc: true)\n  |> unique(column: \"_field\")\n  |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\n  |> group(columns: [])\n  |> sort(columns: [\"order\"])\n//  |> keep(columns: [\"_time\", \"magnet\", \"cmon\", \"cset\", \"pol\"])\n  |> keep(columns: [\"magnet\", \"cmon\", \"cset\", \"pol\"])\n",
+          "query": "import \"strings\"\n\nfrom(bucket: \"magnet\")\n  |> range(start: -1h)\n  |> filter(fn: (r) => r._measurement == \"hdps\")\n  |> filter(fn: (r) => int(v: r.order) > 10 and int(v: r.order) <= 21)\n  |> map(fn: (r) => ({ r with magnet: strings.toUpper(v: r.magnet) }))\n  |> sort(columns: [\"_time\"], desc: true)\n  |> unique(column: \"_field\")\n  |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\n  |> group(columns: [])\n  |> sort(columns: [\"order\"])\n//  |> keep(columns: [\"_time\", \"magnet\", \"cmon\", \"cset\", \"pol\"])\n  |> keep(columns: [\"magnet\", \"cmon\", \"cset\", \"pol\"])\n",
           "refId": "A"
         }
       ],
@@ -254,7 +254,7 @@
       "pluginVersion": "11.4.0",
       "targets": [
         {
-          "query": "import \"strings\"\n\nfrom(bucket: \"magnet\")\n  |> range(start: -1h)\n  |> filter(fn: (r) => r._measurement == \"current\")\n  |> filter(fn: (r) => int(v: r.order) > 21)\n  |> map(fn: (r) => ({ r with magnet: strings.toUpper(v: r.magnet) }))\n  |> sort(columns: [\"_time\"], desc: true)\n  |> unique(column: \"_field\")\n  |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\n  |> group(columns: [])\n  |> sort(columns: [\"order\"])\n//  |> keep(columns: [\"_time\", \"magnet\", \"cmon\", \"cset\", \"pol\"])\n  |> keep(columns: [\"magnet\", \"cmon\", \"cset\", \"pol\"])\n",
+          "query": "import \"strings\"\n\nfrom(bucket: \"magnet\")\n  |> range(start: -1h)\n  |> filter(fn: (r) => r._measurement == \"hdps\")\n  |> filter(fn: (r) => int(v: r.order) > 21)\n  |> map(fn: (r) => ({ r with magnet: strings.toUpper(v: r.magnet) }))\n  |> sort(columns: [\"_time\"], desc: true)\n  |> unique(column: \"_field\")\n  |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\n  |> group(columns: [])\n  |> sort(columns: [\"order\"])\n//  |> keep(columns: [\"_time\", \"magnet\", \"cmon\", \"cset\", \"pol\"])\n  |> keep(columns: [\"magnet\", \"cmon\", \"cset\", \"pol\"])\n",
           "refId": "A"
         }
       ],
@@ -277,6 +277,6 @@
   "timezone": "browser",
   "title": "Magnet",
   "uid": "aeadoxz925ukga",
-  "version": 21,
+  "version": 22,
   "weekStart": ""
 }
