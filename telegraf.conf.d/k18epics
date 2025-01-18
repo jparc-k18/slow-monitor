@@ -64,3 +64,9 @@
   data_format = "influx"
   [inputs.exec.tags]
     dest_bucket = "magnet"
+
+[[inputs.exec]]
+  commands = ["python /home/sks/software/slow-monitor/telegraf.exec/beam.py"]
+  data_format = "influx"
+  [inputs.exec.tags]
+    dest_bucket = "beam"
