@@ -1,0 +1,282 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 4,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "de9sexibae9z4e"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "color-text"
+            },
+            "filterable": false,
+            "inspect": false,
+            "minWidth": 50
+          },
+          "fieldMinMax": false,
+          "mappings": [
+            {
+              "options": {
+                "1": {
+                  "color": "super-light-red",
+                  "index": 0,
+                  "text": "POS"
+                },
+                "-1": {
+                  "color": "super-light-blue",
+                  "index": 1,
+                  "text": "NEG"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": null
+              }
+            ]
+          },
+          "unit": "amp"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 6,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "enablePagination": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "11.4.0",
+      "targets": [
+        {
+          "query": "import \"strings\"\n\nfrom(bucket: \"magnet\")\n  |> range(start: -1h)\n  |> filter(fn: (r) => r._measurement == \"current\")\n  |> filter(fn: (r) => int(v: r.order) <= 10)\n  |> map(fn: (r) => ({ r with magnet: strings.toUpper(v: r.magnet) }))\n  |> sort(columns: [\"_time\"], desc: true)\n  |> unique(column: \"_field\")\n  |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\n  |> group(columns: [])\n  |> sort(columns: [\"order\"])\n//  |> keep(columns: [\"_time\", \"magnet\", \"cmon\", \"cset\", \"pol\"])\n  |> keep(columns: [\"magnet\", \"cmon\", \"cset\", \"pol\"])\n",
+          "refId": "A"
+        }
+      ],
+      "title": "",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "de9sexibae9z4e"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "color-text"
+            },
+            "filterable": false,
+            "inspect": false,
+            "minWidth": 50
+          },
+          "fieldMinMax": false,
+          "mappings": [
+            {
+              "options": {
+                "1": {
+                  "color": "super-light-red",
+                  "index": 0,
+                  "text": "POS"
+                },
+                "-1": {
+                  "color": "super-light-blue",
+                  "index": 1,
+                  "text": "NEG"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": null
+              }
+            ]
+          },
+          "unit": "amp"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 6,
+        "x": 6,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "enablePagination": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "11.4.0",
+      "targets": [
+        {
+          "query": "import \"strings\"\n\nfrom(bucket: \"magnet\")\n  |> range(start: -1h)\n  |> filter(fn: (r) => r._measurement == \"current\")\n  |> filter(fn: (r) => int(v: r.order) > 10 and int(v: r.order) <= 21)\n  |> map(fn: (r) => ({ r with magnet: strings.toUpper(v: r.magnet) }))\n  |> sort(columns: [\"_time\"], desc: true)\n  |> unique(column: \"_field\")\n  |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\n  |> group(columns: [])\n  |> sort(columns: [\"order\"])\n//  |> keep(columns: [\"_time\", \"magnet\", \"cmon\", \"cset\", \"pol\"])\n  |> keep(columns: [\"magnet\", \"cmon\", \"cset\", \"pol\"])\n",
+          "refId": "A"
+        }
+      ],
+      "title": "",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "de9sexibae9z4e"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "color-text"
+            },
+            "filterable": false,
+            "inspect": false,
+            "minWidth": 50
+          },
+          "fieldMinMax": false,
+          "mappings": [
+            {
+              "options": {
+                "1": {
+                  "color": "super-light-red",
+                  "index": 0,
+                  "text": "POS"
+                },
+                "-1": {
+                  "color": "super-light-blue",
+                  "index": 1,
+                  "text": "NEG"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": null
+              }
+            ]
+          },
+          "unit": "amp"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 6,
+        "x": 12,
+        "y": 0
+      },
+      "id": 3,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "enablePagination": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "11.4.0",
+      "targets": [
+        {
+          "query": "import \"strings\"\n\nfrom(bucket: \"magnet\")\n  |> range(start: -1h)\n  |> filter(fn: (r) => r._measurement == \"current\")\n  |> filter(fn: (r) => int(v: r.order) > 21)\n  |> map(fn: (r) => ({ r with magnet: strings.toUpper(v: r.magnet) }))\n  |> sort(columns: [\"_time\"], desc: true)\n  |> unique(column: \"_field\")\n  |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\n  |> group(columns: [])\n  |> sort(columns: [\"order\"])\n//  |> keep(columns: [\"_time\", \"magnet\", \"cmon\", \"cset\", \"pol\"])\n  |> keep(columns: [\"magnet\", \"cmon\", \"cset\", \"pol\"])\n",
+          "refId": "A"
+        }
+      ],
+      "title": "",
+      "type": "table"
+    }
+  ],
+  "preload": false,
+  "refresh": "auto",
+  "schemaVersion": 40,
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Magnet",
+  "uid": "aeadoxz925ukga",
+  "version": 21,
+  "weekStart": ""
+}
