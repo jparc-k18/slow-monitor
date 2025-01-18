@@ -13,8 +13,11 @@ pv_list = [
   'HDSYS:OPR:MODE',
   'HDMON:MR_P3:INTENSITY',
   'HDMON:SYIM:POWER',
+  'HDMON:RGICM:POWER',
   'HDMON:SYIM:INTENSITY',
+  'HDMON:RGICM:INTENSITY',
   'HDMON:BDMPIM:INTENSITY',
+  'HDMON:BIC:INTENSITY',
   'MRSLW:SXOPR_D2:VAL:DUTY',
   'MRSLW:SXOPR_D2:VAL:ExtEffi',
   'MRSLW:SXOPR_D2:VAL:SpLen',
@@ -37,7 +40,9 @@ def fetch_pv_value(pv_name):
   try:
     pv = epics.PV(pv_name)
     pv.wait_for_connection(timeout=1.0)
-    value = pv.get()
+    value = pv.get(as_string=(pv_name == 'HDSYS:OPR:MODE'))
+    if pv_name == 'HDSYS:OPR:MODE':
+      value = f'"{value}"'
     unit = pv.units
     return pv_name, value, unit
   except Exception as e:
@@ -48,7 +53,7 @@ def read():
   lines = []
   measurements = []
   fields = {}
-  with Pool(processes=len(pv_list)) as pool:
+  with Pool(processes=8) as pool:
     results = pool.map(fetch_pv_value, pv_list)
     # print(results)
   for pv_name, value, unit in results:
