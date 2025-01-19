@@ -70,3 +70,9 @@
   data_format = "influx"
   [inputs.exec.tags]
     dest_bucket = "beam"
+
+[[inputs.exec]]
+  commands = ["python /home/sks/software/slow-monitor/telegraf.exec/air.py"]
+  data_format = "influx"
+  [inputs.exec.tags]
+    dest_bucket = "air"
