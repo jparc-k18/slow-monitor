@@ -18,7 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 8,
+  "id": 9,
   "links": [],
   "panels": [
     {
@@ -38,14 +38,10 @@
               {
                 "color": "green",
                 "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
               }
             ]
           },
-          "unit": "pressurepa"
+          "unit": "volt"
         },
         "overrides": []
       },
@@ -54,6 +50,68 @@
         "w": 24,
         "x": 0,
         "y": 0
+      },
+      "id": 3,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.4.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "de9sexibae9z4e"
+          },
+          "query": "from(bucket: \"kikusui\")\n  |> range(start: -10y)\n  |> filter(fn: (r) => r._measurement == \"pmx\" and r._field == \"vmon\")\n  |> keep(columns: [\"_time\", \"device\", \"_value\"])",
+          "refId": "A"
+        }
+      ],
+      "title": "VMon",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "de9sexibae9z4e"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "mamp"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 7
       },
       "id": 2,
       "options": {
@@ -80,108 +138,12 @@
             "type": "influxdb",
             "uid": "de9sexibae9z4e"
           },
-          "query": "from(bucket: \"gas\")\n  |> range(start: -10y)\n  |> filter(fn: (r) => r._field == \"difp\")\n  |> keep(columns: [\"_time\", \"location\", \"_value\"])",
+          "query": "from(bucket: \"kikusui\")\n  |> range(start: -10y)\n  |> filter(fn: (r) => r._measurement == \"pmx\" and r._field == \"imon\")\n  |> keep(columns: [\"_time\", \"device\", \"_value\"])",
           "refId": "A"
         }
       ],
-      "title": "Differential pressure",
+      "title": "IMon",
       "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "influxdb",
-        "uid": "de9sexibae9z4e"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "pressurepa"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 13,
-        "w": 24,
-        "x": 0,
-        "y": 7
-      },
-      "id": 1,
-      "options": {
-        "legend": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "11.4.0",
-      "targets": [
-        {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "de9sexibae9z4e"
-          },
-          "query": "from(bucket: \"gas\")\n  |> range(start: -10y)\n  |> filter(fn: (r) => r._field == \"difp\")\n  |> keep(columns: [\"_time\", \"location\", \"_value\"])",
-          "refId": "A"
-        }
-      ],
-      "title": "Differential pressure",
-      "type": "timeseries"
     }
   ],
   "preload": false,
@@ -197,8 +159,8 @@
   },
   "timepicker": {},
   "timezone": "browser",
-  "title": "Gas",
-  "uid": "beahhbv5taj28e",
-  "version": 4,
+  "title": "KIKUSUI",
+  "uid": "aeahkceh2ew3ka",
+  "version": 3,
   "weekStart": ""
 }
