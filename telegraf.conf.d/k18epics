@@ -76,3 +76,9 @@
   data_format = "influx"
   [inputs.exec.tags]
     dest_bucket = "air"
+
+[[inputs.exec]]
+  commands = ["python /home/sks/software/slow-monitor/telegraf.exec/gas.py"]
+  data_format = "influx"
+  [inputs.exec.tags]
+    dest_bucket = "gas"
