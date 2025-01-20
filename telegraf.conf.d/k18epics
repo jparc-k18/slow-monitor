@@ -94,3 +94,9 @@
   data_format = "influx"
   [inputs.exec.tags]
     dest_bucket = "v895"
+
+[[inputs.exec]]
+  commands = ["python /home/sks/software/slow-monitor/telegraf.exec/slit.py"]
+  data_format = "influx"
+  [inputs.exec.tags]
+    dest_bucket = "slit"
