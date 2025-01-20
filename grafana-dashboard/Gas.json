@@ -38,10 +38,6 @@
               {
                 "color": "green",
                 "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
               }
             ]
           },
@@ -55,7 +51,7 @@
         "x": 0,
         "y": 0
       },
-      "id": 2,
+      "id": 3,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -80,7 +76,7 @@
             "type": "influxdb",
             "uid": "de9sexibae9z4e"
           },
-          "query": "from(bucket: \"gas\")\n  |> range(start: -10y)\n  |> filter(fn: (r) => r._field == \"difp\")\n  |> keep(columns: [\"_time\", \"location\", \"_value\"])",
+          "query": "from(bucket: \"gas\")\n  |> range(start: -10y)\n//  |> filter(fn: (r) => r._measurement == \"pmx\" and r._field == \"vmon\")\n  |> keep(columns: [\"_time\", \"location\", \"_value\"])",
           "refId": "A"
         }
       ],
@@ -180,7 +176,7 @@
           "refId": "A"
         }
       ],
-      "title": "Differential pressure",
+      "title": "",
       "type": "timeseries"
     }
   ],
@@ -199,6 +195,6 @@
   "timezone": "browser",
   "title": "Gas",
   "uid": "beahhbv5taj28e",
-  "version": 4,
+  "version": 12,
   "weekStart": ""
 }
