@@ -88,3 +88,9 @@
   data_format = "influx"
   [inputs.exec.tags]
     dest_bucket = "kikusui"
+
+[[inputs.exec]]
+  commands = ["sudo -u sks python /home/sks/software/slow-monitor/telegraf.exec/v895.py"]
+  data_format = "influx"
+  [inputs.exec.tags]
+    dest_bucket = "v895"
