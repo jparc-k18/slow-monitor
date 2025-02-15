@@ -100,3 +100,9 @@
   data_format = "influx"
   [inputs.exec.tags]
     dest_bucket = "slit"
+
+[[inputs.exec]]
+  commands = ["python /home/sks/software/slow-monitor/telegraf.exec/mppchv.py"]
+  data_format = "influx"
+  [inputs.exec.tags]
+    dest_bucket = "mppchv"
