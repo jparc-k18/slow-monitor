@@ -19,18 +19,21 @@ def read(path):
 #______________________________________________________________________________
 def read_comment(path=comment_txt):
   last_line = read(path)
+  mtime = int(os.path.getmtime(path)*1e9)
   if last_line:
-    last_colon_index = last_line.rfind(':')
-    if last_colon_index != -1:
-      comment = last_line[last_colon_index + 1:].strip()
-      return comment.replace(',', '.').replace('"', '_').replace("'", '_')
+    comment = last_line.partition(':')[-1].partition(':')[-1].partition(':')[-1]
+    # if last_colon_index != -1:
+    #   comment = last_line[last_colon_index + 1:].strip()
+    return (comment.replace(',', '.').replace('"', '_').replace("'", '_'),
+            mtime)
 
 #______________________________________________________________________________
 if __name__ == '__main__':
   if os.path.exists(data_dir):
     data_dir = os.path.abspath(data_dir)
-    print(f'hddaq,data_dir="{data_dir}" runnumber={read(runno_txt)}i,'+
+    comment, mtime = read_comment()
+    print(f'hddaq,data_dir={data_dir} runnumber={read(runno_txt)}i,'+
           f'starttime="{read(starttime_txt)}",'+
           f'maxevent={read(maxevent_txt)}i,'+
           f'trig="{read(trig_txt)}",'+
-          f'comment="{read_comment()}"')
+          f'comment="{comment}" {mtime}')

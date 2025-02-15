@@ -64,10 +64,11 @@
   [inputs.exec.tags]
     dest_bucket = "hddaq"
 
-# [[inputs.exec]]
-#   commands = ["python /home/sks/slow-monitor/python/caenhv-n1470.py"]
-#   timeout = "5s"
-#   data_format = "influx"
-#   [inputs.exec.tags]
-#     dest_bucket = "caenhv"
+[[inputs.exec]]
+  commands = ["sudo -u hayakawa sh /home/sks/slow-monitor/telegraf.exec/ls-kekcc.sh"]
+  interval = "60s"
+  flush_interval = "60s"
+  data_format = "influx"
+  [inputs.exec.tags]
+    dest_bucket = "dsync"
 
