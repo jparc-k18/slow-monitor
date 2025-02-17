@@ -106,3 +106,10 @@
   data_format = "influx"
   [inputs.exec.tags]
     dest_bucket = "mppchv"
+
+[[inputs.execd]]
+  command = ["python", "/home/sks/software/slow-monitor/telegraf.execd/field.py"]
+  signal = "none"
+  data_format = "influx"
+  [inputs.execd.tags]
+    dest_bucket = "field"
